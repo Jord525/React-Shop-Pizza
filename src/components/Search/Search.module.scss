@@ -1,0 +1,27 @@
+.root {
+  width: 400px;
+  height: 48px;
+}
+.main {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 20px;
+  width: 400px;
+  border-radius: 10px;
+  font-size: 16px;
+
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+}
+.clearIcon {
+  width: 25px;
+  height: 45px;
+  opacity: 0.3;
+  position: absolute;
+  cursor: pointer;
+  margin: 0 0 0 -30px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
