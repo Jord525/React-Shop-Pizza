@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
-import { setCategotyId } from '../redux/slices/filterSlice';
+import { setCategotyId, setCurrentPage } from '../redux/slices/filterSlice';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
@@ -14,14 +14,18 @@ const Home = () => {
   const { searchValue } = React.useContext(SearchContext);
   const [fetchItems, setFetchItems] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
-  const [curentPage, setCurentPage] = React.useState(1);
 
   const dispatch = useDispatch();
   const categoryId = useSelector((state) => state.filterReducer.categoryId);
   const sortType = useSelector((state) => state.filterReducer.sort.sort);
+  const currentPage = useSelector((state) => state.filterReducer.currentPage);
 
   const onChangeCategory = (id) => {
     dispatch(setCategotyId(id));
+  };
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
   };
   React.useEffect(() => {
     setLoading(true);
@@ -30,17 +34,16 @@ const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    console.log(sortType);
     axios
       .get(
-        `https://62a45a0f259aba8e10e6cc3b.mockapi.io/iteams?page=${curentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+        `https://62a45a0f259aba8e10e6cc3b.mockapi.io/iteams?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
       )
       .then((res) => {
         setFetchItems(res.data);
         setLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryId, sortType, searchValue, curentPage]);
+  }, [categoryId, sortType, searchValue, currentPage]);
 
   return (
     <div className="container">
@@ -54,7 +57,7 @@ const Home = () => {
           ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
           : fetchItems.map((value) => <PizzaBlock {...value} key={value.id} />)}
       </div>
-      <Pagination onChangePage={(number) => setCurentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };
