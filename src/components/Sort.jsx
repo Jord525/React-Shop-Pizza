@@ -15,13 +15,29 @@ function Sort() {
   const sort = useSelector((state) => state.filterReducer.sort);
 
   const [isVisible, setIsVisible] = React.useState(false);
+  const sortRef = React.useRef();
 
   const onClickListItem = (obj) => {
     dispatch(setSort(obj));
     setIsVisible(false);
   };
+
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.path.includes(sortRef.current)) {
+        setIsVisible(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
