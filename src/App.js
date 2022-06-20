@@ -4,7 +4,7 @@ import './App.css';
 import './scss/app.scss';
 import Header from './components/Header';
 import Home from './pages/Home';
-import Card from './pages/Card';
+import Card from './pages/Cart';
 import NotFound from './pages/NotFound';
 import { Routes, Route } from 'react-router-dom';
 
