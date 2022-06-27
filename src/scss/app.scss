@@ -17,6 +17,19 @@ body {
 }
 
 .content {
+  &__error-info {
+    margin: 60px auto;
+    width: 580px;
+    text-align: center;
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    p {
+      font-size: 22;
+    }
+  }
   padding: 40px 0;
 
   &__title {
