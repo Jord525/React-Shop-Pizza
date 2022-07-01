@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   totalPrice: 0,
@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const cardSlice = createSlice({
-  name: 'card',
+  name: "card",
   initialState,
   reducers: {
     addItem(state, action) {

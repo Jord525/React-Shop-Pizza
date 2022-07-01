@@ -1,26 +1,23 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+import qs from "qs";
+import { useNavigate } from "react-router-dom";
 
 import {
   setCategotyId,
   setCurrentPage,
   setFilters,
-} from '../redux/slices/filterSlice';
-import Categories from '../components/Categories';
-import Sort from '../components/Sort';
-import PizzaBlock from '../components/PizzaBlock';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination/index';
-import { SearchContext } from '../App';
-import { list } from '../components/Sort';
-import { setItems, fetchPizzas } from '../redux/slices/pizzaSlice';
+} from "../redux/slices/filterSlice";
+import Categories from "../components/Categories";
+import Sort from "../components/Sort";
+import PizzaBlock from "../components/PizzaBlock";
+import Skeleton from "../components/PizzaBlock/Skeleton";
+import Pagination from "../components/Pagination/index";
+import { list } from "../components/Sort";
+import { fetchPizzas } from "../redux/slices/pizzaSlice";
 
 const Home = () => {
-  const { searchValue } = React.useContext(SearchContext);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
@@ -30,6 +27,7 @@ const Home = () => {
   const categoryId = useSelector((state) => state.filterReducer.categoryId);
   const sortType = useSelector((state) => state.filterReducer.sort.sort);
   const currentPage = useSelector((state) => state.filterReducer.currentPage);
+  const searchValue = useSelector((state) => state.filterReducer.searchValue);
 
   const onChangeCategory = (id) => {
     dispatch(setCategotyId(id));
@@ -39,10 +37,10 @@ const Home = () => {
     dispatch(setCurrentPage(number));
   };
   const getPizzas = () => {
-    const sortBy = sortType.replace('-', '');
-    const order = sortType.includes('-') ? 'asc' : 'desc';
-    const category = categoryId > 0 ? `category=${categoryId}` : '';
-    const search = searchValue ? `&search=${searchValue}` : '';
+    const sortBy = sortType.replace("-", "");
+    const order = sortType.includes("-") ? "asc" : "desc";
+    const category = categoryId > 0 ? `category=${categoryId}` : "";
+    const search = searchValue ? `&search=${searchValue}` : "";
 
     dispatch(
       fetchPizzas({
@@ -97,14 +95,14 @@ const Home = () => {
         <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      {status === 'error' ? (
+      {status === "error" ? (
         <div className="content__error-info">
           <h2>Произошла ошибка</h2>
           <p>Повторите запрос позже</p>
         </div>
       ) : (
         <div className="content__items">
-          {status === 'loading'
+          {status === "loading"
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
             : items.map((value) => <PizzaBlock {...value} key={value.id} />)}
         </div>

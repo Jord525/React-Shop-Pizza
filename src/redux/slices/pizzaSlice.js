@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchPizzas = createAsyncThunk(
-  'users/fetchPizzasStatus',
+  "users/fetchPizzasStatus",
   async (params) => {
     const { sortBy, order, category, search, currentPage } = params;
     const { data } = await axios.get(
@@ -14,11 +14,11 @@ export const fetchPizzas = createAsyncThunk(
 
 const initialState = {
   items: [],
-  status: 'loading',
+  status: "loading",
 };
 
 export const pizzaSlice = createSlice({
-  name: 'pizza',
+  name: "pizza",
   initialState,
   reducers: {
     setItems(state, action) {
@@ -27,15 +27,15 @@ export const pizzaSlice = createSlice({
   },
   extraReducers: {
     [fetchPizzas.pending]: (state) => {
-      state.status = 'loading';
+      state.status = "loading";
       state.items = [];
     },
     [fetchPizzas.fulfilled]: (state, action) => {
       state.items = action.payload;
-      state.status = 'success';
+      state.status = "success";
     },
-    [fetchPizzas.rejected]: (state, action) => {
-      state.status = 'error';
+    [fetchPizzas.rejected]: (state) => {
+      state.status = "error";
       state.items = [];
     },
   },
