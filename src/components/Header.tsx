@@ -1,11 +1,14 @@
-import { Link } from 'react-router-dom';
-import logoSwg from '../assets/img/pizza-logo.svg';
-import Search from './Search/index.jsx';
-import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
+import logoSwg from "../assets/img/pizza-logo.svg";
+import Search from "./Search/index";
+import { useSelector } from "react-redux";
 
 function Header() {
-  const { items, totalPrice } = useSelector((state) => state.cardSlice);
-  const totalCount = items.reduce((total, item) => total + item.count, 0);
+  const { items, totalPrice } = useSelector((state: any) => state.cardSlice);
+  const totalCount = items.reduce(
+    (total: number, item: any) => total + item.count,
+    0
+  );
 
   return (
     <div className="header">

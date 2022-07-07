@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const CardEmpty = () => {
+const CardEmpty: React.FC = () => {
   return (
     <>
       <div className="cart cart--empty">
