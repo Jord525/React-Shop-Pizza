@@ -1,12 +1,29 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../../redux/slices/cardSlice';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../../redux/slices/cardSlice";
 
-function PizzaBlock({ id, imageUrl, title, price, sizes, types }) {
-  const [active, setActive] = useState(0);
+type PizzaBlockProps = {
+  id: string;
+  title: string;
+  types: number[];
+  sizes: number[];
+  price: number;
+  count: number;
+  imageUrl: string;
+};
+const PizzaBlock: React.FC<PizzaBlockProps> = ({
+  id,
+  imageUrl,
+  title,
+  price,
+  sizes,
+  types,
+}) => {
+  const [active, setActive] = useState<number>(0);
   const [sizeActive, setSizeActive] = useState(0);
-  const cardItem = useSelector((state) =>
-    state.cardSlice.items.find((obj) => obj.id === id)
+
+  const cardItem = useSelector((state: any) =>
+    state.cardSlice.items.find((obj: any) => obj.id === id)
   );
   const dispatch = useDispatch();
 
@@ -24,7 +41,7 @@ function PizzaBlock({ id, imageUrl, title, price, sizes, types }) {
     dispatch(addItem(item));
   };
 
-  const typeNames = ['Тонкое', 'Традиционное'];
+  const typeNames = ["Тонкое", "Традиционное"];
 
   return (
     <div className="pizza-block">
@@ -36,7 +53,7 @@ function PizzaBlock({ id, imageUrl, title, price, sizes, types }) {
             <li
               onClick={() => setActive(types)}
               key={types}
-              className={active === types ? 'active' : ''}
+              className={active === types ? "active" : ""}
             >
               {typeNames[types]}
             </li>
@@ -46,7 +63,7 @@ function PizzaBlock({ id, imageUrl, title, price, sizes, types }) {
           {sizes.map((size, index) => (
             <li
               onClick={() => setSizeActive(index)}
-              className={sizeActive === index ? 'active' : ''}
+              className={sizeActive === index ? "active" : ""}
               key={index}
             >
               {size} см.
@@ -78,6 +95,6 @@ function PizzaBlock({ id, imageUrl, title, price, sizes, types }) {
       </div>
     </div>
   );
-}
+};
 
 export default PizzaBlock;

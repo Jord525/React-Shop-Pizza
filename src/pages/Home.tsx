@@ -23,17 +23,23 @@ const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const { items, status } = useSelector((state) => state.pizzaSlice);
-  const categoryId = useSelector((state) => state.filterReducer.categoryId);
-  const sortType = useSelector((state) => state.filterReducer.sort.sort);
-  const currentPage = useSelector((state) => state.filterReducer.currentPage);
-  const searchValue = useSelector((state) => state.filterReducer.searchValue);
+  const { items, status } = useSelector((state: any) => state.pizzaSlice);
+  const categoryId = useSelector(
+    (state: any) => state.filterReducer.categoryId
+  );
+  const sortType = useSelector((state: any) => state.filterReducer.sort.sort);
+  const currentPage = useSelector(
+    (state: any) => state.filterReducer.currentPage
+  );
+  const searchValue = useSelector(
+    (state: any) => state.filterReducer.searchValue
+  );
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(setCategotyId(id));
   };
 
-  const onChangePage = (number) => {
+  const onChangePage = (number: number) => {
     dispatch(setCurrentPage(number));
   };
   const getPizzas = () => {
@@ -43,6 +49,7 @@ const Home = () => {
     const search = searchValue ? `&search=${searchValue}` : "";
 
     dispatch(
+      // @ts-ignore
       fetchPizzas({
         sortBy,
         order,
@@ -104,7 +111,9 @@ const Home = () => {
         <div className="content__items">
           {status === "loading"
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-            : items.map((value) => <PizzaBlock {...value} key={value.id} />)}
+            : items.map((value: any) => (
+                <PizzaBlock {...value} key={value.id} />
+              ))}
         </div>
       )}
 
