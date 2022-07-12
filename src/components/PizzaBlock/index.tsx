@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../../redux/slices/cardSlice";
+import {
+  addItem,
+  TCartItem,
+  selectCartItems,
+} from "../../redux/slices/cartSlice";
 
 type PizzaBlockProps = {
   id: string;
@@ -22,21 +26,20 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   const [active, setActive] = useState<number>(0);
   const [sizeActive, setSizeActive] = useState(0);
 
-  const cardItem = useSelector((state: any) =>
-    state.cardSlice.items.find((obj: any) => obj.id === id)
-  );
+  const cardItem = useSelector(selectCartItems(id));
   const dispatch = useDispatch();
 
   const addedCount = cardItem ? cardItem.count : 0;
 
   const onClickAdd = () => {
-    const item = {
+    const item: TCartItem = {
       id,
       title,
       price,
       imageUrl,
       type: typeNames[active],
       size: sizes[sizeActive],
+      count: 0,
     };
     dispatch(addItem(item));
   };

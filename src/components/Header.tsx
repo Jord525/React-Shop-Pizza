@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import logoSwg from "../assets/img/pizza-logo.svg";
 import Search from "./Search/index";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 function Header() {
-  const { items, totalPrice } = useSelector((state: any) => state.cardSlice);
+  const { items, totalPrice } = useSelector(
+    (state: RootState) => state.cardSlice
+  );
   const totalCount = items.reduce(
     (total: number, item: any) => total + item.count,
     0
