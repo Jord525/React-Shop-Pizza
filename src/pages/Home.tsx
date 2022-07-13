@@ -28,7 +28,10 @@ const Home = () => {
   const categoryId = useSelector(
     (state: RootState) => state.filterReducer.categoryId
   );
-  const sortType = useSelector((state: any) => state.filterReducer.sort.sort);
+  const sort = useSelector((state: RootState) => state.filterReducer.sort);
+  const sortType = useSelector(
+    (state: RootState) => state.filterReducer.sort.sort
+  );
   const currentPage = useSelector(
     (state: RootState) => state.filterReducer.currentPage
   );
@@ -36,9 +39,9 @@ const Home = () => {
     (state: RootState) => state.filterReducer.searchValue
   );
 
-  const onChangeCategory = (id: number) => {
+  const onChangeCategory = React.useCallback((id: number) => {
     dispatch(setCategotyId(id));
-  };
+  }, []);
 
   const onChangePage = (number: number) => {
     dispatch(setCurrentPage(number));
@@ -103,7 +106,7 @@ const Home = () => {
     <div className="container">
       <div className="content__top">
         <Categories value={categoryId} onClickCategory={onChangeCategory} />
-        <Sort />
+        <Sort value={sort} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       {status === "error" ? (

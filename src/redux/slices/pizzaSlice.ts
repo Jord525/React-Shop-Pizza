@@ -1,9 +1,8 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { SortPropertyEnum } from "./filterSlice";
 
 export type TParamsCAT = {
-  sortBy: SortPropertyEnum;
+  sortBy: string;
   order: string;
   category: string;
   search: string;

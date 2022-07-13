@@ -3,8 +3,9 @@ import logoSwg from "../assets/img/pizza-logo.svg";
 import Search from "./Search/index";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import React from "react";
 
-function Header() {
+const Header: React.FC = () => {
   const { items, totalPrice } = useSelector(
     (state: RootState) => state.cardSlice
   );
@@ -65,6 +66,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;
