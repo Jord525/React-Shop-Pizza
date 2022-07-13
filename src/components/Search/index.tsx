@@ -24,6 +24,7 @@ const Search = () => {
     }, 350),
     []
   );
+
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     updateSearchValue(event.target.value);

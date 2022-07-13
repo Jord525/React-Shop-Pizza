@@ -100,7 +100,7 @@ const Home = () => {
       navigate(`?${queryString}`);
     }
     isMounted.current = true;
-  }, [categoryId, sortType, searchValue, currentPage, navigate]);
+  }, [categoryId, sortType, currentPage, navigate]);
 
   return (
     <div className="container">
