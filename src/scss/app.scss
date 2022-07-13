@@ -1,7 +1,7 @@
-@import 'variables';
-@import 'libs/normalize';
+@import "variables";
+@import "libs/normalize";
 
-@import 'components/all';
+@import "components/all";
 
 body {
   background-color: $background;
@@ -206,6 +206,23 @@ body {
         svg {
           path:first-of-type {
             display: none;
+          }
+          &:disabled {
+            border-color: #787878;
+          }
+          &:active {
+            transform: none;
+          }
+
+          &:hover {
+            background-color: transparent;
+            svg path {
+              fill: #787878;
+            }
+          }
+
+          svg path {
+            fill: #787878;
           }
         }
       }
