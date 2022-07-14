@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import logoSwg from "../../assets/img/pizza-logo.svg";
+import logoSwg from "../../../assets/img/pizza-logo.svg";
 
-const Logo = () => {
+const Logo: React.FC = () => {
   return (
     <Link to="/">
       <div className="header__logo">
