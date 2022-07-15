@@ -4,19 +4,20 @@ import { useSelector, useDispatch } from "react-redux";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 
-import {
-  setCategotyId,
-  setCurrentPage,
-  setFilters,
-} from "../redux/slices/filterSlice";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination/index";
 import { list } from "../components/Sort";
-import { fetchPizzas, TParamsCAT } from "../redux/slices/pizzaSlice";
 import { RootState, useAppDispatch } from "../redux/store";
+import {
+  setCategotyId,
+  setCurrentPage,
+  setFilters,
+} from "../redux/filter/slice";
+import { TParamsCAT } from "../redux/pizza/types";
+import { fetchPizzas } from "../redux/pizza/asyncActions";
 
 const Home = () => {
   const dispatch = useAppDispatch();

@@ -1,9 +1,6 @@
-import { Link } from "react-router-dom";
+import React from "react";
 
 import Search from "../Search/index";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import React from "react";
 import Logo from "./HeaderComponents/Logo";
 import HeaderCart from "./HeaderComponents/HeaderCart";
 

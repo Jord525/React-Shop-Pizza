@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Card from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header/Header";
+import Header from "./components/Header";
 
 export const SearchContext = React.createContext("");
 function App() {
